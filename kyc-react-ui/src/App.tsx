@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
-import io from 'socket.io-client';
 
 // --- Configuration ---
 const API_BASE_URL = 'http://localhost:8000/api/kyc'; // Your FastAPI backend URL
