@@ -272,7 +272,7 @@ app = FastAPI(title="KYC Agentic System API")
 # CORS Middleware: Allows requests from your React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "[http://127.0.0.1:5173](http://127.0.0.1:5173)"], # React dev server origin(s)
+    allow_origins=["http://localhost:5173", "[http://127.0.0.1:5173](http://127.0.0.1:5173)", "http://localhost:3000"], # React dev server origin(s)
     allow_credentials=True,
     allow_methods=["*"], # Allows all methods (GET, POST, etc.)
     allow_headers=["*"], # Allows all headers
@@ -365,11 +365,3 @@ async def websocket_kyc_endpoint(websocket: WebSocket, process_id: str):
 async def read_root():
     """Provides a simple welcome message."""
     return {"message": "Welcome to the KYC Agentic System API"}
-
-# --- Main Execution ---
-if __name__ == "__main__":
-    print("Starting KYC Agentic System API...")
-    if not shared_llm:
-         print("WARNING: LLM is not available. API will run but KYC processing will fail.")
-    # Run the FastAPI server
-    uvicorn.run("main_api:app", host="0.0.0.0", port=8000, reload=True)

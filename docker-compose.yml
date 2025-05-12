@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  kyc-ui:
+    build:
+      context: ./kyc-react-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - kyc-api
+    restart: unless-stopped
+
+  kyc-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./temp_uploads:/app/temp_uploads
+    environment:
+      - PYTHONPATH=/app
+      - UV_VIRTUALENV=/app/.venv
+    restart: unless-stopped

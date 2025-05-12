@@ -52,3 +52,29 @@ For support, questions, or feedback regarding the KycCrew Crew or crewAI.
 - [Chat with our docs](https://chatg.pt/DWjSBZn)
 
 Let's create wonders together with the power and simplicity of crewAI.
+
+
+
+
+The React UI service (kyc-ui):
+
+Runs on port 3000
+Uses nginx to serve the built React application
+Has NODE_ENV set to production
+The Python API service (kyc-api):
+
+Uses UV for dependency management
+Runs on port 8000
+Has mounted volumes for source code and uploads
+Uses Python 3.11 with UV for fast dependency management
+Has hot-reload enabled through the volume mount
+The services are configured to work together, with:
+
+The UI service depending on the API service
+Shared volumes for file uploads
+Proper environment variables set for both services
+Automatic restart on failure
+You can access:
+
+The React UI at http://localhost:3000
+The Python API at http://localhost:8000

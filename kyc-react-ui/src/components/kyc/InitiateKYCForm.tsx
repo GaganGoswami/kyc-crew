@@ -1,6 +1,4 @@
-
 import { useState } from 'react';
-import { MessageBox } from '../common/MessageBox';
 
 interface InitiateKYCFormProps {
   onSubmit: (customerName: string, email: string) => Promise<void>;
@@ -36,7 +34,7 @@ export const InitiateKYCForm: React.FC<InitiateKYCFormProps> = ({
               onChange={(e) => setCustomerName(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter full name"
-              disabled={isSubmitting || processId} // Disable if submitting or already initiated
+              disabled={isSubmitting || !!processId}
             />
           </div>
           <div className="mb-4">
@@ -48,13 +46,13 @@ export const InitiateKYCForm: React.FC<InitiateKYCFormProps> = ({
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter email address"
-              disabled={isSubmitting || processId} // Disable if submitting or already initiated
+              disabled={isSubmitting || !!processId}
             />
           </div>
           <button
             type="submit"
             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-            disabled={isSubmitting || processId} // Disable if submitting or already initiated
+            disabled={isSubmitting || !!processId}
           >
             {isSubmitting ? 'Initiating...' : 'Start KYC Process'}
           </button>
