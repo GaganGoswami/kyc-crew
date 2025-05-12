@@ -1,0 +1,59 @@
+flowchart TD
+    subgraph "React UI Layer"
+        UI[React UI Components]
+        DP[Data Providers]
+        WS[WebSocket Service]
+        QH[Query Handlers]
+    end
+    
+    subgraph "Communication Layer"
+        API[API Gateway]
+        MessageBus[Event Message Bus]
+        WSS[WebSocket Server]
+    end
+    
+    subgraph "Agent Orchestration Layer"
+        CO[Crew Orchestrator]
+        TS[Task Scheduler]
+        SS[State Store]
+    end
+    
+    subgraph "Agent Layer"
+        MSSQL[MSSQL DB Agent]
+        Oracle[Oracle DB Agent]
+        RAG[RAG Agents]
+        DT[Data Transformation Agent]
+        FD[Fraud Detection Agent]
+        CC[Compliance Checker Agent]
+        DI[Document Inspector Agent]
+        RS[Risk Scoring Agent]
+    end
+    
+    subgraph "Foundation Layer"
+        Ollama[Ollama + Gemma 3]
+        ToolRegistry[Tool Registry]
+        AgentMemory[Agent Memory Store]
+        Cache[Cache Service]
+    end
+    
+    UI <--> DP
+    UI <--> WS
+    UI <--> QH
+    
+    DP <--> API
+    WS <--> WSS
+    QH <--> API
+    
+    API <--> CO
+    WSS <--> MessageBus
+    MessageBus <--> CO
+    
+    CO <--> TS
+    CO <--> SS
+    
+    TS --> MSSQL & Oracle & RAG & DT & FD & CC & DI & RS
+    
+    MSSQL & Oracle & RAG & DT & FD & CC & DI & RS --> Ollama
+    MSSQL & Oracle & RAG & DT & FD & CC & DI & RS --> ToolRegistry
+    MSSQL & Oracle & RAG & DT & FD & CC & DI & RS --> AgentMemory
+    MSSQL & Oracle & RAG & DT & FD & CC & DI & RS --> Cache
