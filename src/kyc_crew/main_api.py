@@ -24,21 +24,6 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:latest") # Use the desired Ge
 UPLOAD_DIR = "temp_uploads" # Directory to temporarily store uploads
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-# --- LLM Configuration ---
-# Centralized LLM setup for CrewAI agents
-# try:
-#     shared_llm = LLM(model="ollama/llama3.2:latest", base_url="http://localhost:11434")
-#     #shared_llm = Ollama(model=OLLAMA_MODEL, base_url=OLLAMA_BASE_URL)
-#     # Perform a quick test call
-#     shared_llm.call("Hello, this is a test call to the Ollama model.")
-#     print(f"Successfully connected to Ollama model '{OLLAMA_MODEL}' at {OLLAMA_BASE_URL}")
-# except Exception as e:
-#     print(f"ERROR: Failed to connect to Ollama model '{OLLAMA_MODEL}' at {OLLAMA_BASE_URL}.")
-#     print(f"Ensure Ollama is running and the model '{OLLAMA_MODEL}' is pulled.")
-#     print(f"Error details: {e}")
-#     # Optionally exit or provide a fallback mechanism
-#     shared_llm = None # Indicate LLM is not available
-
 
 # --- LLM Configuration ---
 # Centralized LLM setup for CrewAI agents
